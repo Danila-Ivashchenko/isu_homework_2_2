@@ -1,0 +1,40 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: Arial;
+	box-sizing: border-box;
+}
+table{
+	margin: 100px;
+	border: 2px solid grey;
+	padding: 0;
+	border-spacing: 0;
+}
+td{
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	border: 1px solid grey;
+	font-weight: normal;
+}
+.zero_cell{
+	border-right: 2px solid grey;
+	border-bottom: 2px solid grey;
+	background-color: brown;
+}
+.head_of_row, .head_of_col{
+	background: rgb(255, 226, 173);
+	font-weight: bold;
+	font-size: 22px;
+	border: 1px solid grey;
+}
+.head_of_col{
+	border-bottom: 2px solid grey;
+}
+
+.head_of_row{
+	border-right: 2px solid grey;
+}
+.diagonal_cell{
+	background: rgb(255, 255, 149);
+}
