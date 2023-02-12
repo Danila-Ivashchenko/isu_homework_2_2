@@ -1,0 +1,74 @@
+Accept
+	Синтаксис: <MIME_type>/<MIME_subtype>
+	Пример: application/xhtml+xml
+	Описание: указывает, какие типы контента, выраженные как MIME типы, клиент может понять
+Accept-Charset
+	Синтаксис: <charset>
+	Пример: Accept-Charset: utf-8
+	Описание: определяет допустимые наборы символов
+Accept-Language
+	Синтаксис: <language>
+	Пример: Accept-Language: ru
+	Описание: указывает языки, которые являются приемлемыми
+Cache-Control
+	Синтаксис: <directives>
+	Пример: Cache-Control: no-cache
+	Описание: определяет директивы, которым должны подчиняться все механизмы кэширования по цепочке запрос-ответ
+Connection
+	Синтаксис: <Keep-Alive | Transfer-Encoding | TE | Connection | Traile | Upgrade | Proxy-Authorization | Proxy-Authenticate>
+	Пример: Connection: close
+	Описание: определяет, остается ли сетевое подключение открытым после завершения текущей транзакции
+Cookie
+	Синтаксис: <cookie-list>
+	Пример: Cookie: yummy_cookie=choco
+	Описание: содержит сохраненные HTTP-файлы cookie, ранее отправленные сервером с заголовком Set-Cookie
+Host
+	Синтаксис: <host>:<port>
+	Пример: Host: developer.mozilla.org
+	Описание: указывает доменное имя сервера (для виртуального хостинга) и (необязательно) номер TCP-порта, который прослушивает сервер
+If-Modified-Since
+	Синтаксис: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT
+	Пример: If-Modified-Since: Wed, 21 Oct 2015 07:28:00 GMT
+	Описание: позволяет возвращать значение 304 (не измененное), если содержимое не изменилось
+If-None-Match
+	Синтаксис: "<etag_value>", "<etag_value>"
+	Пример: If-None-Match: "67ab43", "54ed21", "7892dd"
+	Описание: список тегов версий сущности, выполнять метод если ни одного из них не существует
+If-Unmodified-Since
+	Синтаксис: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT
+	Пример: If-Unmodified-Since: Wed, 21 Oct 2015 07:28:00 GMT
+	Описание: выполнять метод если сущность не изменилась с указанной даты
+Max-Forwards
+	Синтаксис: <integer>
+	Пример: Max-Forwards: 10
+	Описание: ограничивает количество раз, когда сообщение может быть переадресовано через прокси-серверы или шлюзы
+Pragma
+	Синтаксис: no-cache
+	Пример: Pragma: no-cache
+	Описание: заголовок, специфичный для реализации, который может иметь различные эффекты в любом месте цепочки запрос-ответ
+Proxy-Authorization
+	Синтаксис: <type> <credentials>
+	Пример: Proxy-Authorization: Basic YWxhZGRpbjpvcGVuc2VzYW1l
+	Описание: учетные данные для авторизации для подключения к прокси-серверу
+Range
+	Синтаксис: <unit>=<range-start>-<range-end>, <range-start>-<range-end>, <range-start>-<range-end>
+	Пример: Range: bytes=200-1000, 2000-6576, 19000-
+	Описание: запрашивать только часть объекта
+Referer
+	Синтаксис: <url>
+	Пример: Referer: https:
+	Описание: developer.mozilla.org/en-US/docs/Web/JavaScriptTE (Transfer-Encoding)
+	Синтаксис: <chunked | compress | deflate | gzip>
+	Пример: Transfer-Encoding: gzip, chunked
+	Описание: используется для передачи кодировок
+Upgrade
+	Синтаксис: <url>Host: www.example.com
+	Пример: Connection: upgrade
+	Описание: Upgrade: example/1, foo/2User-Agent
+	Синтаксис: <product> / <product-version> <comment>
+	Пример: User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>
+	Описание: содержит строку характеристик, которая позволяет одноранговым узлам сетевого протокола идентифицировать тип приложения, операционную систему, поставщика программного обеспечения или версию программного обеспечения запрашивающего программного пользовательского агента
+Via
+	Синтаксис: [ <protocol-name> "/" ]<protocol-version> <host> [ ":" <port> ] [ <protocol-name> "/" ] <protocol-version> <pseudonym>
+	Пример: Via: HTTP/1.1 GWA
+	Описание: информирует сервер о прокси, через которые был отправлен запрос

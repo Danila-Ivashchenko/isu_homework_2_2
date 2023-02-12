@@ -1,0 +1,10 @@
+Content-Type	<MIME_type>/<MIME_	Content-type: application/json	указывает тип носителя ответа
+Content-Length	<length>	Content-Length: 3495	определяет размер тела ответа в байтах
+Date	<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT	Date: Wed, 21 Oct 2015 07:28:00 GMT	указывает дату и время, в которое был отправлен ответ
+Server	<product>	Server: Apache/2.4.1 (Unix)	указывает имя сервера, который отправляет ответ
+Connection	<Keep-Alive | Transfer-Encoding | TE | Connection | Traile | Upgrade | Proxy-Authorization | Proxy-Authenticate>	Connection: Proxy-Authenticate	указывает тип соединения, которое использовалось для отправки ответа
+Cache-Control	<directives>	Cache-Control: no-cache	определяет директивы кэширования, которым должен следовать клиент
+Expires	<http-date>	Expires: Wed, 21 Oct 2015 07:28:00 GMT	указывает дату и время, после которых ответ следует считать устаревшим
+Last-Modified	<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT	Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT	указывает дату и время, когда ответ был изменен в последний раз
+Location	<url>	Location: /index.html	указывает URL-адрес, на который должен быть перенаправлен клиент
+Set-Cookie	<cookie-name>=<cookie-value>;	Set-Cookie: sessionId=38afes7a8	указывает файл cookie, который должен быть отправлен клиенту

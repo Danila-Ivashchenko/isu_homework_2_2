@@ -1,0 +1,40 @@
+Content-Type
+	Синтаксис: <MIME_type>/<MIME_
+	Пример: Content-type: application/json
+	Описание: указывает тип носителя ответа
+Content-Length
+	Синтаксис: <length>
+	Пример: Content-Length: 3495
+	Описание: определяет размер тела ответа в байтах
+Date
+	Синтаксис: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT
+	Пример: Date: Wed, 21 Oct 2015 07:28:00 GMT
+	Описание: указывает дату и время, в которое был отправлен ответ
+Server
+	Синтаксис: <product>
+	Пример: Server: Apache/2.4.1 (Unix)
+	Описание: указывает имя сервера, который отправляет ответ
+Connection
+	Синтаксис: <Keep-Alive | Transfer-Encoding | TE | Connection | Traile | Upgrade | Proxy-Authorization | Proxy-Authenticate>
+	Пример: Connection: Proxy-Authenticate
+	Описание: указывает тип соединения, которое использовалось для отправки ответа
+Cache-Control
+	Синтаксис: <directives>
+	Пример: Cache-Control: no-cache
+	Описание: определяет директивы кэширования, которым должен следовать клиент
+Expires
+	Синтаксис: <http-date>
+	Пример: Expires: Wed, 21 Oct 2015 07:28:00 GMT
+	Описание: указывает дату и время, после которых ответ следует считать устаревшим
+Last-Modified
+	Синтаксис: <day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT
+	Пример: Last-Modified: Wed, 21 Oct 2015 07:28:00 GMT
+	Описание: указывает дату и время, когда ответ был изменен в последний раз
+Location
+	Синтаксис: <url>
+	Пример: Location: /index.html
+	Описание: указывает URL-адрес, на который должен быть перенаправлен клиент
+Set-Cookie
+	Синтаксис: <cookie-name>=<cookie-value>;
+	Пример: Set-Cookie: sessionId=38afes7a8
+	Описание: указывает файл cookie, который должен быть отправлен клиенту
