@@ -9,3 +9,7 @@ class ActionType(Enum):
 class Action(BaseModel):
     action: ActionType
     username: Optional[str]
+
+
+class Register_action(BaseModel):
+    username: str

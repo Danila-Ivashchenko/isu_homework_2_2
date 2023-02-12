@@ -3,3 +3,4 @@ from pydantic import BaseModel
 import secrets
 from fastapi import FastAPI
 from typing import Optional
+from sqlalchemy import MetaData, Integer, String, TIMESTAMP, ForeignKey, Column, Table
