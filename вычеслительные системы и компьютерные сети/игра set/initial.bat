@@ -1,2 +1,2 @@
-python3.10 - pip install fastapi uvicorn sqlalchemy
+pip install fastapi uvicorn sqlalchemy sqlite3
 python3.10 main.py

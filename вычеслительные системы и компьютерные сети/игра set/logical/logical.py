@@ -1,10 +1,10 @@
+from database import Session
+from .database_operator import Database_operator
 
-def register(users_db, username):
-    response: str
-    response = users_db.register(username)
-    return {"status": 200, response[0]: response[1]}
+db = Database_operator(Session())
 
-def get_users(users_db):
-    return {"status": 200,
-            "users": users_db.get_users()
-            }
+
+def register(username):
+    response: dict
+    response = db.add_user(username)
+    return {"status": 200, 'user': response}
