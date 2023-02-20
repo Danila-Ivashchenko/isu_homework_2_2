@@ -11,15 +11,26 @@ class Database_operator:
     def __init__(self, session_maker: sessionmaker):
         self.session_maker = session_maker
 
-    def add_user(self, username: str) -> User:
-        session = self.session_maker()
-        user = User(username, secrets.token_hex(8))
-        session.add(user)
-        user = session.new
-        session.commit()
-        print(list(user)[0], type(user))
-        return list(user)[0].to_json()
+    def add_user(self, username: str) -> dict:
+        response: dict
+        if not (self.cheek_user_user_registered(username)):
+            with self.session_maker() as session:
+                session.begin()
+                try:
+                    user = User(username, secrets.token_hex(8))
+                    session.add(user)
+                    user = list(session.new)[0]
+                    response = user.to_json()
+                except:
+                    session.rollback()
+                    response = {"detail": "Something bad"}
+                else:
+                    session.commit()
+        else:
+            response = {"detail": "This username is already registered"}
+        return response
 
     def cheek_user_user_registered(self, username: str) -> bool:
-        flag = False
-
+        with self.session_maker() as session:
+            user_count = session.query(User).filter(User.username == username).count()
+            return user_count != 0

@@ -6,4 +6,7 @@ db = Database_operator(Session)
 def register(username):
     response: dict
     response = db.add_user(username)
-    return {"status": 200, 'user': response}
+    if list(response.keys())[0] != "detail":
+        return {"status": 200, "user": response}
+    else:
+        return {"status": 201, "log": response}
