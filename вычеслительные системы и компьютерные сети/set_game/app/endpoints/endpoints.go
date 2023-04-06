@@ -5,6 +5,7 @@ import (
 	db "set-game/app/database"
 	m "set-game/app/models"
 
+	"github.com/gorilla/websocket"
 	"github.com/labstack/echo/v4"
 )
 
@@ -38,4 +39,14 @@ func (endp *Endpoints) Register(с echo.Context) error {
 
 func (endp *Endpoints) GetUsers(с echo.Context) error {
 	return с.JSON(http.StatusOK, db.Users)
+}
+
+func (endp *Endpoints) SayToConns(с echo.Context) error {
+	mess := []byte{}
+	body := с.Request().Body
+	body.Read(mess)
+	for conn := range db.Conns {
+		conn.WriteMessage(websocket.BinaryMessage, mess)
+	}
+	return nil
 }
