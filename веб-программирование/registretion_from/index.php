@@ -8,7 +8,7 @@
 	<title>Document</title>
 </head>
 <body>
-<form method="POST" action="../funcs/register.php">
+<form class="main_form" method="POST" action="../funcs/register.php">
 	<div class="line">
 	<label>Имя участника</label>
 	<input type=" text" name="name"><br>

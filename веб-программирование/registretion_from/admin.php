@@ -5,13 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="styles/main.css" rel="stylesheet">
+	<link href="styles/table_style.css" rel="stylesheet">
 	<title>Document</title>
 </head>
 <body>
 <div class="table-users">
     <?php
 
-    function parse_file($file_path)
+    function parse_data($file_path)
     {
         $data = array();
         $lines = file($file_path);
@@ -22,10 +23,9 @@
         return $data;
     }
 
-    // Function to generate table rows with delete button
-    function generate_table_row($filename)
+    function add_record($filename)
     {
-        $data = parse_file($filename);
+        $data = parse_data($filename);
         $row = '<tr>';
         foreach ($data as $key => $value) {
             $row .= '<td>' . $value . '</td>';
@@ -37,18 +37,16 @@
 
     $file_dir = './static';
 
-    // Удаление
     if (isset($_POST['delete'])) {
         if (file_exists($_POST['filename'])) {
             unlink($_POST['filename']);
         }
     }
 
-    // Генерация таблицы по файлам
-    $table = '<table><thead><tr><th>Имя</th><th>Фамилия</th><th>E-mail</th><th>Телефон</th><th>Тематика конференции</th><th>Метод оплаты</th><th>Получать рассылку</th><th></th></tr></thead><tbody>';
+    $table = '<table><thead><tr><th>Имя</th><th>Фамилия</th><th>E-mail</th><th>Телефон</th><th>Тематика конференции</th><th>Метод оплаты</th><th>Получать рассылку</th><th>Дата</th><th>Время</th><th>Удалить</th></thead><tbody>';
 
-	 foreach (glob($file_dir . '/*.txt') as $filename) {
-        $table .= generate_table_row($filename);
+	foreach (glob($file_dir . '/*.txt') as $filename) {
+        $table .= add_record($filename);
     }
     $table .= '</tbody></table>';
 

@@ -9,7 +9,7 @@ body{
 	padding: 100px;
 }
 
-form{
+.main_form{
 	border: 2px solid white;
 	border-radius: 20px;
 	width: 600px;
