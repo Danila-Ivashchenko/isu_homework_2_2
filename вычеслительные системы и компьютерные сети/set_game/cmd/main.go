@@ -8,7 +8,8 @@ import (
 
 func main() {
 	endp := new(e.Endpoints)
-	g := new(g.Game)
+	g := g.NewGame()
+
 	app := a.NewApp(endp, g)
 	app.Engine("8080")
 }

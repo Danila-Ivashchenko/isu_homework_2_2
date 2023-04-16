@@ -7,7 +7,13 @@ import (
 type IEndpoints interface {
 	Register(c echo.Context) error
 	GetUsers(c echo.Context) error
+	GetPlayers(c echo.Context) error
 	SayToConns(c echo.Context) error
+	Create(c echo.Context) error
+	GetLobbies(c echo.Context) error
+	GetLobbiesInfo(c echo.Context) error
+	JoinToGame(c echo.Context) error
+	Field(c echo.Context) error
 	// Create(e echo.Context) error
 	// List(e echo.Context) error
 	// Enter(e echo.Context) error
@@ -17,6 +23,7 @@ type IEndpoints interface {
 
 type IGame interface {
 	Hello(c echo.Context) error
+	Set(c echo.Context) error
 }
 
 const (
@@ -48,8 +55,15 @@ func NewApp(endp IEndpoints, g IGame) *App {
 func (app *App) routing() {
 	app.e.POST("/user/register", app.endp.Register)
 	app.e.POST("/user/get_all", app.endp.GetUsers)
+	app.e.POST("/set/player/list", app.endp.GetPlayers)
 	app.e.POST("/say", app.endp.SayToConns)
+	app.e.POST("/set/room/create", app.endp.Create)
+	app.e.POST("/set/room/list", app.endp.GetLobbies)
+	app.e.POST("/set/room/list/info", app.endp.GetLobbiesInfo)
+	app.e.POST("/set/room/list/enter", app.endp.JoinToGame)
+	app.e.POST("/set/field", app.endp.Field)
 	app.e.GET("/ws/game/hello", app.g.Hello)
+	app.e.GET("/ws/game/set", app.g.Set)
 }
 
 // Get port like "8080", not ":8080"
