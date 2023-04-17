@@ -1,6 +1,7 @@
 package endpoints
 
 import (
+	"fmt"
 	"net/http"
 	db "set-game/app/database"
 	m "set-game/app/models"
@@ -76,17 +77,89 @@ func (endp *Endpoints) Field(с echo.Context) error {
 	accessTocken := m.RequestWithTocken{}
 	с.Bind(&accessTocken)
 	pd, flag := db.PlayerDatas[accessTocken.AccessToken]
+	exaption := map[string]interface{}{}
 	if !flag {
-		return с.JSON(http.StatusOK, map[string]interface{}{"cards": []interface{}{}})
+		exaption["mess"] = fmt.Sprintf("bad access token - %s", accessTocken.AccessToken)
+		return с.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+	}
+	gameId := pd.CurrentLobby
+	_, flag = db.Lobbies[gameId]
+	if !flag {
+		exaption["mess"] = fmt.Sprintf("Bad lobby id - %d", gameId)
+		return с.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+	}
+
+	return с.JSON(http.StatusOK, m.GoodCardsResponse(db.Lobbies[gameId].ActiveCards))
+}
+
+func (endp *Endpoints) AddCards(с echo.Context) error {
+	accessTocken := m.RequestWithTocken{}
+	с.Bind(&accessTocken)
+	pd, flag := db.PlayerDatas[accessTocken.AccessToken]
+	exaption := map[string]interface{}{}
+	if !flag {
+		exaption["message"] = fmt.Sprintf("bad access token - %s", accessTocken.AccessToken)
+		return с.JSON(http.StatusOK, m.BadCardsResponse(exaption))
 	}
 	gameId := pd.CurrentLobby
 	lobby, flag := db.Lobbies[gameId]
 	if !flag {
-		return с.JSON(http.StatusOK, map[string]interface{}{"cards": []interface{}{}})
+		exaption["message"] = fmt.Sprintf("Bad lobby id - %d", gameId)
+		return с.JSON(http.StatusOK, m.BadCardsResponse(exaption))
 	}
-	cards, _ := lobby.GetNCards(12)
+	flag, mess := lobby.MakeActiveCards(3)
 	db.Lobbies[gameId] = lobby
-	return с.JSON(http.StatusOK, cards)
+	if !flag {
+		exaption["message"] = mess
+		return с.JSON(http.StatusOK, m.MixedCardsResponse(db.Lobbies[gameId].ActiveCards, exaption))
+	}
+	db.Lobbies[gameId] = lobby
+	return с.JSON(http.StatusOK, m.GoodCardsResponse(db.Lobbies[gameId].ActiveCards))
+}
+
+func (endp *Endpoints) FindSet(с echo.Context) error {
+	accessTocken := m.RequestWithTocken{}
+	с.Bind(&accessTocken)
+	pd, flag := db.PlayerDatas[accessTocken.AccessToken]
+	exaption := map[string]interface{}{}
+	if !flag {
+		exaption["message"] = fmt.Sprintf("bad access token - %s", accessTocken.AccessToken)
+		return с.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+	}
+	gameId := pd.CurrentLobby
+	lobby, flag := db.Lobbies[gameId]
+	if !flag {
+		exaption["message"] = fmt.Sprintf("Bad lobby id - %d", gameId)
+		return с.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+	}
+	flag, mess, set := lobby.FindSet()
+	db.Lobbies[gameId] = lobby
+	if !flag {
+		exaption["mess"] = mess
+		return с.JSON(http.StatusOK, m.MixedCardsResponse(set, exaption))
+	}
+
+	return с.JSON(http.StatusOK, m.GoodCardsResponse(set))
+}
+
+func (endp *Endpoints) Pick(c echo.Context) error {
+	request := m.PickRequest{}
+	c.Bind(&request)
+	pd, flag := db.PlayerDatas[request.AccessToken]
+	exaption := map[string]interface{}{}
+	if !flag {
+		exaption["message"] = fmt.Sprintf("bad access token - %s", request.AccessToken)
+		return c.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+	}
+	gameId := pd.CurrentLobby
+	lobby, flag := db.Lobbies[gameId]
+	if !flag {
+		exaption["message"] = fmt.Sprintf("Bad lobby id - %d", gameId)
+		return c.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+	}
+	flag, mess := lobby.Pick(request.Cards...)
+	db.Lobbies[gameId] = lobby
+	return c.JSON(http.StatusOK, map[string]interface{}{"isSet": flag, "mess": mess})
 }
 
 func (endp *Endpoints) SayToConns(с echo.Context) error {

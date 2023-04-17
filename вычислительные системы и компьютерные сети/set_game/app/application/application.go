@@ -14,6 +14,9 @@ type IEndpoints interface {
 	GetLobbiesInfo(c echo.Context) error
 	JoinToGame(c echo.Context) error
 	Field(c echo.Context) error
+	AddCards(с echo.Context) error
+	FindSet(с echo.Context) error
+	Pick(с echo.Context) error
 	// Create(e echo.Context) error
 	// List(e echo.Context) error
 	// Enter(e echo.Context) error
@@ -62,6 +65,9 @@ func (app *App) routing() {
 	app.e.POST("/set/room/list/info", app.endp.GetLobbiesInfo)
 	app.e.POST("/set/room/list/enter", app.endp.JoinToGame)
 	app.e.POST("/set/field", app.endp.Field)
+	app.e.POST("/set/field/add", app.endp.AddCards)
+	app.e.POST("/set/field/find", app.endp.FindSet)
+	app.e.POST("/set/pick", app.endp.Pick)
 	app.e.GET("/ws/game/hello", app.g.Hello)
 	app.e.GET("/ws/game/set", app.g.Set)
 }

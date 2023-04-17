@@ -3,6 +3,7 @@ package models
 import (
 	"crypto/md5"
 	"encoding/hex"
+	set_m "set-game/set/models"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -64,4 +65,37 @@ type CreateResponse struct {
 type JoinRequest struct {
 	AccessToken string `json:"accsessTocken"`
 	GameId      int    `json:"gameId"`
+}
+
+type CardsResponse struct {
+	Success   bool                   `json:"success"`
+	Exception map[string]interface{} `json:"exception"`
+	Cards     []set_m.Card           `json:"cards"`
+}
+
+func BadCardsResponse(exaption map[string]interface{}) CardsResponse {
+	respnose := CardsResponse{}
+	respnose.Success = false
+	respnose.Exception = exaption
+	return respnose
+}
+
+func GoodCardsResponse(cards []set_m.Card) CardsResponse {
+	respnose := CardsResponse{}
+	respnose.Success = true
+	respnose.Cards = cards
+	return respnose
+}
+
+func MixedCardsResponse(cards []set_m.Card, exaption map[string]interface{}) CardsResponse {
+	respnose := CardsResponse{}
+	respnose.Success = true
+	respnose.Exception = exaption
+	respnose.Cards = cards
+	return respnose
+}
+
+type PickRequest struct {
+	AccessToken string `json:"accessTocken"`
+	Cards       []int  `json:"cards"`
 }

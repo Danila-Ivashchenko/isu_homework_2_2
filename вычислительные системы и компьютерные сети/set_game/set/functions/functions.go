@@ -42,8 +42,8 @@ func GenerateBoard() []m.Card {
 	return cards
 }
 
-func is_set(card1, card2, card3 m.Card) bool {
-	is_set := true
+func Is_set(card1, card2, card3 m.Card) bool {
+	Is_set := true
 
 	counts := [3]uint8{card1.Count, card2.Count, card3.Count}
 	colors := [3]uint8{card1.Color, card2.Color, card3.Color}
@@ -59,10 +59,11 @@ func is_set(card1, card2, card3 m.Card) bool {
 		if propertys[i][0] != propertys[i][1] && propertys[i][0] != propertys[i][2] && propertys[i][1] != propertys[i][2] {
 			continue
 		}
-		is_set = false
+
+		Is_set = false
 		break
 	}
-	return is_set
+	return Is_set
 }
 
 func FindSets(cards []m.Card) [][3]m.Card {
@@ -71,11 +72,26 @@ func FindSets(cards []m.Card) [][3]m.Card {
 	for i := 0; i < len(cards); i++ {
 		for j := i + 1; j < len(cards); j++ {
 			for c := j + 1; c < len(cards); c++ {
-				if is_set(cards[i], cards[j], cards[c]) {
+				if Is_set(cards[i], cards[j], cards[c]) {
 					sets = append(sets, [3]m.Card{cards[i], cards[j], cards[c]})
 				}
 			}
 		}
 	}
 	return sets
+}
+
+func FindSet(cards []m.Card) []m.Card {
+	set := []m.Card{}
+
+	for i := 0; i < len(cards); i++ {
+		for j := i + 1; j < len(cards); j++ {
+			for c := j + 1; c < len(cards); c++ {
+				if Is_set(cards[i], cards[j], cards[c]) {
+					return []m.Card{cards[i], cards[j], cards[c]}
+				}
+			}
+		}
+	}
+	return set
 }

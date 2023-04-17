@@ -13,9 +13,11 @@ func (err *ErrAnswer) Error() string {
 }
 
 type Lobby struct {
+	Alive        bool         `json:"alive"`
 	MaxPlayers   int          `json:"max_players"`
 	Players      []string     `json:"players"`
-	Cards        []set_m.Card `json:"-"`
+	Cards        []set_m.Card `json:"stashed_cards"`
+	ActiveCards  []set_m.Card `json:"active_cards"`
 	CountPlayers int          `json:"count_players"`
 }
 
