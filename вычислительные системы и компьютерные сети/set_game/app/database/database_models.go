@@ -29,5 +29,6 @@ type LobbyEnterResponce struct {
 
 type PlayerData struct {
 	UserName     string
+	Score        int
 	CurrentLobby int
 }

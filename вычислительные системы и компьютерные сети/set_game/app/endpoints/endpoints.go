@@ -149,17 +149,22 @@ func (endp *Endpoints) Pick(c echo.Context) error {
 	exaption := map[string]interface{}{}
 	if !flag {
 		exaption["message"] = fmt.Sprintf("bad access token - %s", request.AccessToken)
-		return c.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+		return c.JSON(http.StatusOK, m.NewPickResponse(flag, exaption, -1))
 	}
 	gameId := pd.CurrentLobby
 	lobby, flag := db.Lobbies[gameId]
 	if !flag {
 		exaption["message"] = fmt.Sprintf("Bad lobby id - %d", gameId)
-		return c.JSON(http.StatusOK, m.BadCardsResponse(exaption))
+		return c.JSON(http.StatusOK, m.NewPickResponse(flag, exaption, -1))
 	}
 	flag, mess := lobby.Pick(request.Cards...)
+	if flag {
+		pd.Score += 1
+		db.PlayerDatas[request.AccessToken] = pd
+	}
+	exaption["message"] = mess
 	db.Lobbies[gameId] = lobby
-	return c.JSON(http.StatusOK, map[string]interface{}{"isSet": flag, "mess": mess})
+	return c.JSON(http.StatusOK, m.NewPickResponse(flag, exaption, pd.Score))
 }
 
 func (endp *Endpoints) SayToConns(с echo.Context) error {

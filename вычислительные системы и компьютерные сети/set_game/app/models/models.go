@@ -99,3 +99,13 @@ type PickRequest struct {
 	AccessToken string `json:"accessTocken"`
 	Cards       []int  `json:"cards"`
 }
+
+type PickResponse struct {
+	IsSet    bool                   `json:"isSet"`
+	Exaption map[string]interface{} `json:"exaption"`
+	Score    int                    `json:"score"`
+}
+
+func NewPickResponse(isset bool, exaprion map[string]interface{}, score int) PickResponse {
+	return PickResponse{IsSet: false, Exaption: exaprion, Score: score}
+}
