@@ -19,7 +19,7 @@ function accepted(){
 __MESS;
 }
 
-function fail(){
+function fail($error){
 	echo <<<__MESS
 	<!DOCTYPE html>
 	<html lang="en">
@@ -31,7 +31,7 @@ function fail(){
 		<link href="../styles/main.css" rel="stylesheet">
 	</head>
 	<body>
-		<div class="mess bad">Заполнены не все поля!</div>
+		<div class="mess bad">$error</div>
 		<button onclick='history.back();'>Назад</button>
 	</body>
 	</html>

@@ -7,6 +7,13 @@ if ((isset($_POST["name"]) && $_POST["name"] !="") &&
 	(isset($_POST["topic"]) && $_POST["topic"] !="") &&
 	(isset($_POST["payment_method"]) && $_POST["payment_method"] !="")
 	){
+		foreach ($_POST as $value) {
+			$pos = strpos($value, '|');
+			if ($pos !== false) {
+				fail("Недопустимый символ '|' в $value");
+				exit;
+			}
+		}
 		$name = $_POST['name'];
 		$surname = $_POST['surname'];
 		$email = $_POST['email'];
@@ -26,5 +33,5 @@ if ((isset($_POST["name"]) && $_POST["name"] !="") &&
 		accepted();
 	}
 else{
-	fail($_POST["name"]);
+	fail("Не все поля заполнены!");
 }
