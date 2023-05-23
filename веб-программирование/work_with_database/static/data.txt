@@ -1,0 +1,2 @@
+e598ac956610b38a1fccfa458646e2e1a36089a5a13a6fb3196f85e1ecb23e31|Данила|Иващенко|danil2003iva@mail.ru|+79834076134|Бизнес|WebMoney|нет|2023-05-22|ACTIVE
+cfea793f7e10056ec674527e9cf08332ae635c89de0ca5346f672b4edc577a8e|Данилаdadada|Иващенко|danil2003iva@mail.ru|+79834076134|Реклама и Маркетинг|Яндекс.Деньги|да|2023-05-22|ACTIVE
