@@ -39,7 +39,7 @@
 			if ($where_case != "") {
 				$sql .= " WHERE $where_case";
 			}
-			$sql .= ' ORDER BY task_date, task_time';
+			$sql .= ' ORDER BY task_date DESC, task_time ASC';
 
 			$db = get_db();
 			$stmt = $db->prepare($sql);
@@ -96,7 +96,7 @@
 					$where_case .= ' AND';
 				}
 			}
-
+		
 			return $this->get_all_tasts($where_case);
 		}
 	}

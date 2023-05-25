@@ -22,3 +22,72 @@ form .line {
 	justify-content: space-between;
 	margin: 10px;
 }
+
+form {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+
+	padding: 20px;
+	border: 2px solid #255c3c;
+	border-radius: 20px;
+	margin-right: 50px;
+
+	color: #52AA8A;
+	font-weight: bold;
+}
+
+form .line{
+	display: flex;
+	flex-direction: column;
+}
+
+form .line:not(:last-child){
+	margin-bottom: 10px;
+}
+
+form .line input{
+	margin-top: 5px;
+
+	padding: 5px;
+	font-size: 14px;
+	width: 200px;
+
+	border: 1px solid rgb(211, 211, 211);
+	border-radius: 5px;
+}
+
+button {
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+
+	background-color: #388659;
+
+	border: 2px solid #255c3c;
+	border-radius: 10px;
+}
+
+h3 {
+	color: #388659;
+}
+
+a {
+	display: block;
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+
+	margin: 10px 0px 20px 0px;
+
+	width: 250px;
+	text-align: center;
+	text-decoration: none;
+
+	background-color: #388659;
+
+	border: 2px solid #255c3c;
+	border-radius: 10px;
+}

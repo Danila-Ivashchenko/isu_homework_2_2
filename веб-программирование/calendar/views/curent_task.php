@@ -20,6 +20,14 @@
 		}
 		$data = $task->get_all_data();
 	?>
+	<div class="header">
+	<div class="username">
+		<?php
+			echo $_COOKIE["user_name"];
+		?>
+	</div>
+	<a href="tasks.php">Назад</a>
+	</div>
 	<div class="wrapper">
 		<div class="section">
 			<div class="status">
@@ -35,13 +43,16 @@
 					?>
 				</h3>
 			</div>
-			<form class="add_tasks" action="../funcs/delete_task.php" method="POST">
+
+			<form class="dell_tasks" action="../funcs/delete_task.php" method="POST">
 				<?php
 					echo '<input type="hidden" name="task_id" value="' . $data[0] . '">';
 				?>
 				<button type="submit">Удалить</button>
 			</form>
+
 			<form class="add_tasks" action="../funcs/update_task.php" method="POST">
+
 				<?php
 				echo '<input type="hidden" name="task_id" value="' . $data[0] . '">';
 				?>

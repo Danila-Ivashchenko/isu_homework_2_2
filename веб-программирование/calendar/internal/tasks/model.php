@@ -39,18 +39,26 @@
 			$status =  $data[8] == 1 ? 'сделано' : 'несделано';
 			$task_id = $data[0];
 			$status_class = $data[8] == 1 ? 'done' : 'not-done';
-			$result .= "<form action='../funcs/make_task_done.php' method='POST'><input type='hidden' name='task_id' value='$task_id'><input type='submit' value='Завершить'></form>";
-			$result .= "<form action='curent_task.php' method='GET'><input type='hidden' name='task_id' value='$task_id'><input type='submit' value='Редактировать'></form>";
-			$result .= '<div class="item">' . '<span>Id</span>' . '<span>' . $data[0] .'</span></div>';
-			$result .= '<div class="item">' . '<span>Id владельца</span>' . '<span>' . $data[1] .'</span></div>';
-			$result .= '<div class="item">' . '<span>Тип</span>' . '<span>' . $data[2] .'</span></div>';
-			$result .= '<div class="item">' . '<span>Тема</span>' . '<span>' . $data[3] .'</span></div>';
-			$result .= '<div class="item">' . '<span>Место</span>' . '<span>' . $data[4] .'</span></div>';
+			$status_butt_flag = $data[8] == 1 ? false : true;
+			
+			$result .= "<div class='line'>";
+			if ($status_butt_flag) {
+				$result .= "<form action='../funcs/make_task_done.php' method='POST'><input type='hidden' name='task_id' value='$task_id'><input type='submit' value='Завершить'></form>";
+			} else {
+				$result .= "<form action='../funcs/make_task_done.php' method='POST'><input type='hidden' name='task_id' value='$task_id'><input type='submit' value='Возобновить'></form>";
+
+			}
+			$result .= "<form action='curent_task.php' method='GET'><input type='hidden' name='task_id' value='$task_id'><input type='submit' value='Редактировать'></form></div>";
+			$result .= '<div class="line"><div class="item">' . '<span>Id</span>' . '<span>' . $data[0] .'</span></div>';
+			$result .= '<div class="item">' . '<span>Id владельца</span>' . '<span>' . $data[1] .'</span></div></div>';
+			$result .= '<div class="line"><div class="item">' . '<span>Тип</span>' . '<span>' . $data[2] .'</span></div>';
+			$result .= '<div class="item">' . '<span>Тема</span>' . '<span>' . $data[3] .'</span></div></div>';
+			$result .= '<div class="line"><div class="item">' . '<span>Место</span>' . '<span>' . $data[4] .'</span></div>';
 			$result .= '<div class="item">' . '<span>Дата начала</span>' . '<span>' . $data[5] .'</span></div>';
-			$result .= '<div class="item">' . '<span>Время начала</span>' . '<span>' . $data[6] .'</span></div>';
-			$result .= '<div class="item">' . '<span>Продолжительность</span>' . '<span>' . $data[7] .'</span></div>';
-			$result .= '<div class="item">' . "<span class='$status_class'>Статус</span>" . '<span>' . $status .'</span></div>';
-			$result .= '<div class="item">' . '<span>Комментарий</span>' . '<span>' . $data[9] .'</span></div>';
+			$result .= '<div class="item">' . '<span>Время начала</span>' . '<span>' . $data[6] .'</span></div></div>';
+			$result .= '<div class="line"><div class="item">' . '<span>Продолжительность</span>' . '<span>' . $data[7] .'</span></div>';
+			$result .= '<div class="item">' . "<span>Статус</span>" . "<span class='$status_class'>" . $status .'</span></div></div>';
+			$result .= '<div class="line"><div class="item">' . '<span>Комментарий</span>' . '<span>' . $data[9] .'</span></div></div>';
 			$result .= '</div>';
 			return $result;
 		}

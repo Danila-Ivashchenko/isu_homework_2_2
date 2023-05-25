@@ -16,7 +16,7 @@
 			$service = new UserService();
 			$id = $service->get_id_by_username_and_pass($_POST["username"],$_POST["password"]);
 			if ($id != -1) {
-				$service->authentication($id);
+				$service->authentication($id, $_POST["username"]);
 				header("Location: ../index.php");
 				exit();
 				$mess = "Успешно";
@@ -29,8 +29,11 @@
 	?>
 	<div class="wrapper">
 		<div class="block">
-			<a href="./register.php">зарегестрироваться</a>
+			<a href="./register.php">зарегистрироваться</a>
 			<form action="login.php" method="POST">
+				<div class="line">
+					<h3>Авторизация<h3>
+				</div>
 				<div class="line">
 					<label for="username">Имя пользователя</label>
 					<input type="text" name="username" id="username" required>
@@ -40,7 +43,7 @@
 					<input type="password" name="password" id="password" required>
 				</div>
 				<div class="line">
-					<button name="enter" type="submit">Отправить</button>
+					<button name="enter" type="submit">Войти</button>
 				</div>
 			</form>
 		</div>

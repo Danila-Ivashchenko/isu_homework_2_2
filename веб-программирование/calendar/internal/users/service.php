@@ -40,8 +40,9 @@
 			return count($result) > 0 ? $result[0][0] : -1;
 		}
 
-		public function authentication($id) {
+		public function authentication($id, $user_name) {
 			setcookie("user_id", $id, time() + (30 * 24 * 60 * 60), "/");
+			setcookie("user_name", $user_name, time() + (30 * 24 * 60 * 60), "/");
 			return true;
 		}
 

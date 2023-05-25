@@ -9,7 +9,6 @@
 </head>
 <body>
 	<?php
-		echo date("Y-m-d H:i");
 		if (!isset($_COOKIE["user_id"])) {
 			header("Location: ./views/login.php");
 			exit();
@@ -17,6 +16,11 @@
 		require_once "../internal/tasks/service.php";
 	?>
 	<div class="header">
+		<div class="username">
+			<?php
+				echo $_COOKIE["user_name"];
+			?>
+		</div>
 		<a href="dislogin.php">Выйти</a>
 	</div>
 	<div class="wrapper">
@@ -85,14 +89,15 @@
 				<?php
 					$service = new TaskService();
 					$data = [];
-					if (isset($_POST["need_date"]) || isset($_POST["is_done"])) {
+					if ((isset($_POST["task_date"]) && $_POST["task_date"] != '') || (isset($_POST["is_done"]) && $_POST["is_done"] != '')) {
 						$where_params = ['owner_id' => $_COOKIE["user_id"]];
-						if (isset($_POST["need_date"])) {
-							$where_params['task_date'] = '"' . $_POST["need_date"] . '"';
+						if (isset($_POST["task_date"]) && $_POST["task_date"] != '') {
+							$where_params['task_date'] = '"' . $_POST["task_date"] . '"';
 						}
-						if (isset($_POST["is_done"])) {
+						if (isset($_POST["is_done"]) && $_POST["is_done"] != '') {
 							$where_params['is_done'] = $_POST["is_done"];
 						}
+
 						$data = $service->get_tasks_with_params($where_params);
 					} else {
 						$data = $service->get_all_user_tasks($_COOKIE["user_id"]);

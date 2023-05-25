@@ -4,11 +4,39 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+.header {
+	display: flex;
+	width: 100%;
+	background-color: rgb(230, 230, 230);
+
+	padding: 20px;
+	font-size: 22px;
+}
+
+.header a {
+	color: #388659;
+	margin-left: 20px;
+
+	display: flex;
+}
+
 .wrapper{
 	display: flex;
 	align-items: flex-start;
 	padding-left: 200px;
 	padding-top: 100px;
+}
+
+button {
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+
+	background-color: #388659;
+
+	border: 2px solid #255c3c;
+	border-radius: 10px;
 }
 
 .add_tasks {
@@ -17,9 +45,12 @@
 	width: 400px;
 
 	padding: 20px;
-	border: 2px solid black;
+	border: 2px solid #255c3c;
 	border-radius: 20px;
 	margin-right: 50px;
+
+	color: #52AA8A;
+	font-weight: bold;
 }
 
 .add_tasks .line{
@@ -32,8 +63,16 @@
 }
 
 .add_tasks .line input, 
-.add_tasks .line select{
+.add_tasks .line select,
+.add_tasks .line textarea{
+	margin-top: 5px;
+
+	padding: 5px;
+	font-size: 14px;
 	width: 200px;
+
+	border: 1px solid rgb(211, 211, 211);
+	border-radius: 5px;
 }
 
 .add_tasks .line textarea {
@@ -45,10 +84,46 @@
 
 .tasks_list {
 	padding: 20px;
-	border: 2px solid black;
+	border: 2px solid #255c3c;
 	border-radius: 20px;
 	min-width: 600px;
-	max-width: 1800px;
+	max-width: 1000px;
+	/* max-width: 1800px; */
+}
+
+.task input {
+	padding: 10px;
+	font-size: 14px;
+
+	background-color: #52AA5E;
+	border: 2px solid #258131;
+
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+
+	border-radius: 10px;
+}
+
+.task form:first-child input {
+	margin-right: 10px;
+	background-color: #3AAED8;
+	border: 2px solid #208ad1;
+	
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.tasks_list	 h3{
+	color: #3e8068;
+	font-size: 28px;
+}	
+
+.date {
+	color: #3e8068;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 .date_section, .today_section {
@@ -59,21 +134,40 @@
 }
 
 .tasks_list .task{
-	border: 1px solid black;
+	border: 2px solid #255c3c;
 	padding: 10px;
 	border-radius: 20px;
-
+	max-width: 350px;
 	margin: 10px;
+
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tasks_list .task .line {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.tasks_list .task .line:not(:last-child) {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #255c3c;
 }
 
 .tasks_list .task .item {
 	display: flex;
 	flex-direction: column;
+	min-width: 70px;
+	margin: 10px;
 }
 
 .tasks_list .task .item span:first-child {
 	color: gray;
-	margin-right: 10px;
+	margin-bottom: 5px;
 }
 
 .tasks_list .task .item span {
@@ -81,21 +175,50 @@
 }
 
 
-.tasks_list .task .item span:first-child.done {
-	color: rgb(20, 146, 20);
+.tasks_list .task .item .done {
+	color: #52AA5E;
+	font-weight: bold;
 }
 
-.tasks_list .task .item span:first-child.not-done {
-	color: rgb(146, 20, 20);
+.tasks_list .task .item .not-done {
+	color: #aa5252;
+	font-weight: bold;
 }
 
 .filter form{
 	display: flex;
-	border: 2px solid black;
+	border: 2px solid #255c3c;
 	padding: 20px;
 	border-radius: 20px;
 
 	flex-wrap: wrap;
+
+	color: #52AA8A;
+	font-weight: bold;
+}
+
+.filter a {
+	display: block;
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+
+	margin: 10px 0px 20px 0px;
+
+	width: 150px;
+	text-align: center;
+	text-decoration: none;
+
+	background-color: #388659;
+
+	border: 2px solid #255c3c;
+	border-radius: 10px;
+}
+
+.filter form  h3 {
+	color: #3e8068;
+	font-size: 28px;
 }
 
 .filter form .line {
@@ -105,4 +228,21 @@
 .filter form .line:first-child{
 	width: 100%;
 	margin: 0;
+}
+
+.filter form .line input{
+	margin-top: 5px;
+
+	padding: 5px;
+	font-size: 14px;
+
+	border: 1px solid rgb(211, 211, 211);
+	border-radius: 5px;
+}
+
+
+.dell_tasks button{
+	margin: 10px 0;
+	background-color: #5c2525;
+	border-color: #491515;
 }
